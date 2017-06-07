@@ -1,0 +1,3 @@
+[zabbix]
+localhost ansible_become=true
+
