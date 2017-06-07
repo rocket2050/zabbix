@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Rahul
+  description: Quick and easy mysql backup and restore
+  company: Opstree
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - precise
+    - trusty
+    - vivid
+  galaxy_tags:
+    - zabbix
