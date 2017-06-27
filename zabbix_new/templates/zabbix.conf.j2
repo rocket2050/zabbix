@@ -7,7 +7,7 @@ Alias /zabbix /usr/share/zabbix
 <Directory "/usr/share/zabbix">
     Options FollowSymLinks
     AllowOverride None
-    Require all granted
+    Allow from all
 
     <IfModule mod_php5.c>
         php_value max_execution_time 300
