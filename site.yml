@@ -1,0 +1,5 @@
+---
+- hosts: zabbix
+  roles:
+    - { role: "zabbix-centos" }
+ 
