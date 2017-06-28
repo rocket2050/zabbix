@@ -1,2 +1,2 @@
 [zabbix]
-192.168.33.52 ansible_become=yes
+localhost ansible_become=yes
