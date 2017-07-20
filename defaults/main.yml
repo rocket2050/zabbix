@@ -3,3 +3,4 @@
 mysql_root_password: "root@123"
 zabbix_database_password: "zabbix"
 zabbix_server_ip: "localhost"
+version_name: "xenial"

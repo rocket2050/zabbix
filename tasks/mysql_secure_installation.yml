@@ -2,14 +2,16 @@
 # Set root password
 # UPDATE mysql.user SET Password=PASSWORD('mysecret') WHERE User='root';
 # FLUSH PRIVILEGES;
+- name: Add .my.cnf
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
 
 - name: Set root Password
   mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
   with_items:
     - localhost
 
-- name: Add .my.cnf
-  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+#- name: Add .my.cnf
+#  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
 
 - name: Reload privilege tables
   command: 'mysql -e "{{ item }}"'

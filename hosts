@@ -1,3 +1,3 @@
-[zabbix]
+[zabbix-server]
 localhost ansible_become=true
 

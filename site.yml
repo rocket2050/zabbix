@@ -1,4 +1,4 @@
 ---
-- hosts: zabbix
+- hosts: zabbix-server
   roles:
     - { role: "zabbix" }

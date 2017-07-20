@@ -1,7 +1,7 @@
 ---
 # tasks file for zabbix
 
-- stat: path=/root/zabbix-release_3.2-1+trusty_all.deb
+- stat: path=/root/zabbix-release_3.2-1+{{ version_name }}_all.deb
   register: zabbixrelease
 
 - stat: path=/usr/share/doc/zabbix-server-mysql/create.sql.gz
@@ -9,13 +9,13 @@
 
 - name: Downloading repository packages
   get_url:
-    url: http://repo.zabbix.com/zabbix/3.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.2-1+trusty_all.deb
+    url: http://repo.zabbix.com/zabbix/3.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.2-1+{{ version_name }}_all.deb
     dest: /root/
   when: zabbixrelease.stat.exists == False
 
 - name: Installing zabbix-server  package
   apt:
-    deb: /root/zabbix-release_3.2-1+trusty_all.deb
+    deb: /root/zabbix-release_3.2-1+{{ version_name }}_all.deb
   when: zabbixrelease.stat.exists == False
 
 - name: Updating package list
@@ -31,6 +31,10 @@
   with_items:
       - zabbix-frontend-php
       - python-mysqldb
+      - php*-xml 
+      - php*-bcmath 
+      - php*-mbstring
+      - snmp
 
 - service: name=mysql state=started
 
@@ -42,7 +46,7 @@
 - service: name=apache2 state=restarted
 
 - name: Creating zabbix database ...
-  mysql_db: name=zabbix state=present
+  mysql_db: name=zabbix state=present encoding=utf8
 
 - name: Specify GRANTS on database user ...
   mysql_user: name=zabbix password={{ zabbix_database_password }} priv=zabbix.*:ALL,GRANT state=present
